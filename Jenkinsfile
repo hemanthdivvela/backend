@@ -11,22 +11,20 @@ pipeline {
     environment{
         def appVersion = '' //variable declartion in gobal
     }
-    
-    
-
+       
     stages {
         stage('read the version'){
             steps {
                 script{
 
-                    def packageJson = readJson file: 'package.json'
+                    def packageJson = readJSON file: 'package.json'
                     appVersion = packageJson.version
                     echo "application version: $appVersion"
                 }
             }
 
         }
-        stage('npm dependices') {
+        stage('install Dependencies') {
             steps {
                 sh """
                  npm install
