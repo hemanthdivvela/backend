@@ -10,7 +10,7 @@ pipeline {
     }
     environment{
         def appVersion = '' //variable declartion in gobal
-        nexusUrl = 'nexus.hemanth78s.online:8081'
+        nexusUrl = '44.201.61.248:8081'
     }
        
     stages {
