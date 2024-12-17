@@ -10,7 +10,7 @@ pipeline {
     }
     environment{
         def appVersion = '' //variable declartion in gobal
-        nexusUrl = 'nexus.hemanth78s.online'
+        nexusUrl = 'nexus.hemanth78s.online:8081'
     }
        
     stages {
@@ -43,7 +43,7 @@ pipeline {
                 """
             }
         }
-        stage('Nexus arti factory'){
+        stage('Nexus Artifact Upload'){
             steps{
                 script{
                      nexusArtifactUploader(
