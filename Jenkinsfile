@@ -10,6 +10,7 @@ pipeline {
     }
     environment{
         def appVersion = '' //variable declartion in gobal
+        nexusUrl = 'nexus.hemanth78s.online'
     }
        
     stages {
@@ -40,6 +41,27 @@ pipeline {
                 ls -ltr
 
                 """
+            }
+        }
+        stage('Nexus arti factory'){
+            steps{
+                script{
+                     nexusArtifactUploader(
+                        nexusVersion: 'nexus3',
+                        protocol: 'http',
+                        nexusUrl: "${nexusUrl}",
+                        groupId: 'com.expense',
+                        version: "${appVersion}",
+                        repository: 'backend',
+                        credentialsId: 'nexus-auth',
+                        artifacts: [
+                            [artifactId: "backend",
+                            classifier: '',
+                            file: 'backend-' + "${appVersion}" + '.zip',
+                            type: 'zip']
+                        ]
+                    )
+                }
             }
         }
         
