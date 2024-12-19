@@ -8,6 +8,9 @@ pipeline {
         disableConcurrentBuilds()
         ansiColor('xterm')
     }
+    parameters{
+        booleanParm(name: 'deploy', defaultValue: false, description: 'Toggle this value')
+    }
     environment{
         def appVersion = '' //variable declartion in gobal
         nexusUrl = 'nexus.hemanth78s.online:8081'
