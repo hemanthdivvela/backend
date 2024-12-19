@@ -50,11 +50,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('Sonar-6.0') {  // referring sonar server 
-                        sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=<project-key> \
-                            -Dsonar.projectName=<project-name> \
-                            -Dsonar.projectVersion=<project-version> \
-                            -Dsonar.sources=<project-path>"
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
