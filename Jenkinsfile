@@ -46,19 +46,19 @@ pipeline {
                 """
             }
         }
-        // stage('Sonar scan'){
-        //     environment {
-        //         scannerHome = tool 'sonar-6.0' // referring scanner CLI
-        //     }
-        //     steps {
-        //         script {
-        //             withSonarQubeEnv('sonar-6.0') {  // referring sonar server 
-        //                 sh "${scannerHome}/bin/sonar-scanner"
-        //             }
-        //         }
-        //     }
+        stage('Sonar scan'){
+            environment {
+                scannerHome = tool 'sonar-6.0' // referring scanner CLI
+            }
+            steps {
+                script {
+                    withSonarQubeEnv('sonar-6.0') {  // referring sonar server 
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
             
-        // }
+        }
         stage('Nexus Artifact Upload'){
             steps{
                 script{
