@@ -43,6 +43,23 @@ pipeline {
                 """
             }
         }
+        stage('Sonar scan'){
+            environment {
+                scannerHome = tool 'Sonar-6.0' // referring scanner CLI
+            }
+            steps {
+                script {
+                    withSonarQubeEnv('Sonar-6.0') {  // referring sonar server 
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=<project-key> \
+                            -Dsonar.projectName=<project-name> \
+                            -Dsonar.projectVersion=<project-version> \
+                            -Dsonar.sources=<project-path>"
+                    }
+                }
+            }
+            
+        }
         stage('Nexus Artifact Upload'){
             steps{
                 script{
